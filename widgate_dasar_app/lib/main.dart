@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(const WidgetDasarApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class WidgetDasarApp extends StatelessWidget {
+  const WidgetDasarApp({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Biodata Diri App',
+      title: 'Widget Dasar App',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: const Color.fromARGB(255, 8, 190, 240)),
-        useMaterial3: true,
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: const Color(0xFFF5F5F5), // Warna latar belakang
       ),
       home: const BiodataPage(),
     );
@@ -26,40 +26,28 @@ class BiodataPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF0F8FF), // Warna latar belakang biru muda
       appBar: AppBar(
-        backgroundColor: const Color.fromRGBO(7, 217, 249, 1),
+        title: const Text('Biodata Diri'),
+        backgroundColor: Colors.blueAccent,
         foregroundColor: Colors.white,
-        title: const Text(
-          'Biodata Diri',
-          style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-          ),
-        ),
-        centerTitle: true,
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Header dengan foto profil
-            _buildProfileHeader(),
-            const SizedBox(height: 24),
+            // Bagian Foto Profil
+            _buildProfileSection(),
+            const SizedBox(height: 24.0),
             
-            // Section informasi pribadi
-            _buildInfoSection(),
-            const SizedBox(height: 16),
+            // Bagian Informasi Biodata
+            _buildBioSection(),
+            const SizedBox(height: 24.0),
             
-            // Section pendidikan
-            _buildEducationSection(),
-            const SizedBox(height: 16),
-            
-            // Section kontak
+            // Bagian Kontak
             _buildContactSection(),
-            const SizedBox(height: 24),
+            const SizedBox(height: 24.0),
             
-            // Tombol-tombol aksi
+            // Tombol Aksi
             _buildActionButtons(),
           ],
         ),
@@ -67,63 +55,55 @@ class BiodataPage extends StatelessWidget {
     );
   }
 
-  // Widget untuk header profil dengan foto
-  Widget _buildProfileHeader() {
+  // Widget untuk bagian foto profil
+  Widget _buildProfileSection() {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.3),
-            blurRadius: 8,
+            blurRadius: 6.0,
             offset: const Offset(0, 2),
           ),
         ],
       ),
       child: Column(
         children: [
-          // Image Widget - Foto profil
+          // Image widget - menggunakan asset image
           Container(
-            width: 120,
-            height: 120,
+            width: 120.0,
+            height: 120.0,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              border: Border.all(color: Colors.blue, width: 3),
+              border: Border.all(color: Colors.blueAccent, width: 3.0),
             ),
             child: ClipOval(
               child: Image.asset(
-                'assets/images/PROFIL.jpg',
+                'assets/images/PROFIL.jpg', // Ganti dengan path foto Anda
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) {
-                  return const Icon(
-                    Icons.person,
-                    size: 60,
-                    color: Colors.grey,
-                  );
+                  return const Icon(Icons.person, size: 60, color: Colors.grey);
                 },
-                
-                
               ),
             ),
           ),
-          const SizedBox(height: 14),
-          
-          // Text Widget - Nama dan profesi
+          const SizedBox(height: 16.0),
           const Text(
-            'REGA ARDIANSAH S.Kom',
+            'Nama Lengkap Anda',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 20.0,
               fontWeight: FontWeight.bold,
-              color: Colors.blue,
+              color: Colors.blueAccent,
             ),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 4.0),
           const Text(
-            'DIREKTUR UTAMA',
+            'Mahasiswa / Developer',
             style: TextStyle(
-              fontSize: 16,
+              fontSize: 14.0,
               color: Colors.grey,
             ),
           ),
@@ -132,17 +112,17 @@ class BiodataPage extends StatelessWidget {
     );
   }
 
-  // Widget untuk section informasi pribadi
-  Widget _buildInfoSection() {
+  // Widget untuk bagian informasi biodata
+  Widget _buildBioSection() {
     return Container(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(16.0),
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
+        borderRadius: BorderRadius.circular(12.0),
         boxShadow: [
           BoxShadow(
             color: Colors.grey.withOpacity(0.3),
-            blurRadius: 8,
+            blurRadius: 6.0,
             offset: const Offset(0, 2),
           ),
         ],
@@ -150,123 +130,20 @@ class BiodataPage extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Row Widget - Judul section dengan icon
-          Row(
-            children: [
-              Icon(Icons.person_outline, color: Colors.blue, size: 20),
-              const SizedBox(width: 8),
-              const Text(
-                'Informasi Pribadi',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue,
-                ),
-              ),
-            ],
+          const Text(
+            'Informasi Pribadi',
+            style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.blueAccent,
+            ),
           ),
-          const SizedBox(height: 16),
-          
-          // Column Widget - Daftar informasi
-          Column(
-            children: [
-              _buildInfoRow('Tempat Lahir', 'Kerinci'),
-              _buildInfoRow('Tanggal Lahir', '16 juli 2005'),
-              _buildInfoRow('Jenis Kelamin', 'Laki-laki'),
-              _buildInfoRow('Alamat', 'Jambi city'),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  // Widget untuk section pendidikan
-  Widget _buildEducationSection() {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(Icons.school_outlined, color: Colors.blue, size: 20),
-              const SizedBox(width: 8),
-              const Text(
-                'Pendidikan',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Column(
-            children: [
-              _buildEducationItem('SD Negeri 152 Bukit Sari', '2011-2017'),
-              _buildEducationItem('SMP Negeri 17 Kab Tebo', '2017-2020'),
-              _buildEducationItem('SMA Negeri 4 Kab Tebo', '2020-2023'),
-              _buildEducationItem('Universitas GAJAH MADA - Sistem Informasi', '2023-Sekarang'),
-            ],
-          ),
-        ],
-      ),
-    );
-  }
-
-  // Widget untuk section kontak
-  Widget _buildContactSection() {
-    return Container(
-      padding: const EdgeInsets.all(20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(15),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.3),
-            blurRadius: 8,
-            offset: const Offset(0, 2),
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Icon(Icons.contact_phone_outlined, color: Colors.blue, size: 20),
-              const SizedBox(width: 8),
-              const Text(
-                'Kontak',
-                style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.blue,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 16),
-          Column(
-            children: [
-              _buildContactItem(Icons.email, 'regaardiansah812@email.com'),
-              _buildContactItem(Icons.phone, '+62 83185450688'),
-              _buildContactItem(Icons.location_on, 'Jambi, Indonesia'),
-            ],
-          ),
+          const SizedBox(height: 12.0),
+          _buildInfoRow('Tempat Lahir', 'Kota Anda'),
+          _buildInfoRow('Tanggal Lahir', '01 Januari 2000'),
+          _buildInfoRow('Alamat', 'Jl. Contoh Alamat No. 123'),
+          _buildInfoRow('Pendidikan', 'Universitas Contoh'),
+          _buildInfoRow('Jurusan', 'Teknik Informatika'),
         ],
       ),
     );
@@ -275,7 +152,7 @@ class BiodataPage extends StatelessWidget {
   // Widget untuk baris informasi
   Widget _buildInfoRow(String label, String value) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -303,42 +180,36 @@ class BiodataPage extends StatelessWidget {
     );
   }
 
-  // Widget untuk item pendidikan
-  Widget _buildEducationItem(String school, String year) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      child: Row(
+  // Widget untuk bagian kontak
+  Widget _buildContactSection() {
+    return Container(
+      padding: const EdgeInsets.all(16.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(12.0),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.3),
+            blurRadius: 6.0,
+            offset: const Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            width: 8,
-            height: 8,
-            margin: const EdgeInsets.only(top: 6, right: 12),
-            decoration: const BoxDecoration(
-              color: Colors.blue,
-              shape: BoxShape.circle,
+          const Text(
+            'Kontak',
+            style: TextStyle(
+              fontSize: 18.0,
+              fontWeight: FontWeight.bold,
+              color: Colors.blueAccent,
             ),
           ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  school,
-                  style: const TextStyle(
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-                Text(
-                  year,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          const SizedBox(height: 12.0),
+          _buildContactItem(Icons.email, 'email@contoh.com'),
+          _buildContactItem(Icons.phone, '+62 812-3456-7890'),
+          _buildContactItem(Icons.location_on, 'Kota Anda, Indonesia'),
         ],
       ),
     );
@@ -347,11 +218,11 @@ class BiodataPage extends StatelessWidget {
   // Widget untuk item kontak
   Widget _buildContactItem(IconData icon, String text) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
       child: Row(
         children: [
-          Icon(icon, color: Colors.blue, size: 20),
-          const SizedBox(width: 12),
+          Icon(icon, color: Colors.blueAccent, size: 20.0),
+          const SizedBox(width: 12.0),
           Text(text),
         ],
       ),
@@ -362,50 +233,41 @@ class BiodataPage extends StatelessWidget {
   Widget _buildActionButtons() {
     return Row(
       children: [
-        // Button Widget - ElevatedButton
         Expanded(
           child: ElevatedButton(
             onPressed: () {
-              // Aksi ketika tombol diklik
+              // Aksi untuk tombol Hubungi
             },
             style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.blue,
+              backgroundColor: Colors.blueAccent,
               foregroundColor: Colors.white,
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
             ),
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.message, size: 18),
-                SizedBox(width: 8),
-                Text('Hubungi Saya'),
+                Icon(Icons.message, size: 18.0),
+                SizedBox(width: 8.0),
+                Text('Hubungi'),
               ],
             ),
           ),
         ),
-        const SizedBox(width: 12),
-        
-        // Button Widget - OutlinedButton
+        const SizedBox(width: 12.0),
         Expanded(
           child: OutlinedButton(
             onPressed: () {
-              // Aksi ketika tombol diklik
+              // Aksi untuk tombol Bagikan
             },
             style: OutlinedButton.styleFrom(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8),
-              ),
-              side: const BorderSide(color: Colors.blue),
+              padding: const EdgeInsets.symmetric(vertical: 12.0),
+              side: const BorderSide(color: Colors.blueAccent),
             ),
             child: const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Icon(Icons.share, size: 18),
-                SizedBox(width: 8),
+                Icon(Icons.share, size: 18.0),
+                SizedBox(width: 8.0),
                 Text('Bagikan'),
               ],
             ),
